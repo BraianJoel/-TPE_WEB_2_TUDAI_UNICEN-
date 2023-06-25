@@ -11,6 +11,12 @@
             $this->smarty->assign('titulo', "Iniciar Sesión"); 
             //$this->smarty->assign('error', $error);
 
-            $this->smarty->display('Templates/Login.tpl');  
-        }  
+            $this->smarty->display('Templates/login.tpl');  
+        }
+        function showloginCorrect(/*$error= null*/){
+            $this->smarty->assign('titulo', "Bienvenido"); 
+            //$this->smarty->assign('error', $error);
+
+            $this->smarty->display('Templates/main.tpl'); 
+        }
     }

@@ -12,5 +12,6 @@
             $sentencia->execute(Array($username));
 
             $username=$sentencia->fetch(PDO::FETCH_OBJ);
+
         }
 }

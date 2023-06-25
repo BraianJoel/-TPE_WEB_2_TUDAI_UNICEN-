@@ -7,8 +7,8 @@ class prendasModel{
          .'dbname=db_prendas;charset=utf8'
          , 'root', '');
     }
-    public function getPrendasConPartes() {
-        $sentencia=$this->db->prepare("SELECT * FROM `prendas` INNER JOIN `partes` on prendas.prendas_ID=partes.ID_prendas");
+    public function getPrendasConEstaciones() {
+        $sentencia=$this->db->prepare("SELECT prendas.*, estaciones.nombre AS estaciones FROM `prendas` INNER JOIN `estaciones` on prendas.estaciones_id=estaciones.id");
         $sentencia->execute();
 
         $prendas= $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -16,22 +16,25 @@ class prendasModel{
         return $prendas;
     }
     //obtener dato por ID
-    public function getPrendasById($id){
-        $sentencia=$this->db->prepare("SELECT*FROM prendas WHERE (id)=?");
+    public function getPrendaById($id){
+        $sentencia=$this->db->prepare("SELECT prendas.*, estaciones.nombre AS estaciones FROM prendas INNER JOIN `estaciones` on prendas.estaciones_id=estaciones.id WHERE prendas.id=?");
         $sentencia->execute([$id]);
 
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
     //insertar datos
-    public function insertPrenda($img, $prenda, $descripcion, $precio ){
-        $sentencia=$this->db->prepare("INSERT INTO `prendas` (img, prenda, descripcion, precio) VALUES(?,?,?,?)");
-        $sentencia->execute(array($img, $prenda, $descripcion, $precio));
+    public function insertPrenda($img, $prenda, $descripcion, $precio, $estacion, $id ){
+        $sentencia=$this->db->prepare("INSERT INTO `prendas` (img, prenda, descripcion, precio, estacion, id)
+         VALUES(?,?,?,?)");
+        $sentencia->execute(array($img, $prenda, $descripcion, $precio, $estacion, $id));
         
     }
         //modificar datos
-    public function updatePrenda($img, $prenda, $descripcion, $precio){
-        $sentencia=$this->db->prepare("UPDATE prendas SET img=? prenda=? descripcion=? precio=? WHERE=?");
-        $sentencia->execute([ $img, $prenda, $descripcion, $precio]);
+    public function updatePrenda($img, $nombre, $descripcion, $precio, $estacion, $id){
+        $sentencia=$this->db->prepare("UPDATE prendas SET img=?, nombre=?, descripcion=?, precio=?, estaciones_id=? WHERE id= ?");
+        $sentencia->execute([ $img, $nombre, $descripcion, $precio, $estacion, $id]);
+
+        return $sentencia->rowCount()>0; // me va a contar las filas que fueron modificadas en la BBDD 
     }
     //eliminar datos
     public function deletePrenda($id){

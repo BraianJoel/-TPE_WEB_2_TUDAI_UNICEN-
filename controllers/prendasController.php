@@ -1,7 +1,8 @@
 <?php
     require_once('models/prendasModel.php');
     require_once('views/prendasView.php');
-    require_once('helpers/outhAuth.php');
+    require_once('helpers/outhHelper.php');
+    
 
 
     Class prendasController {
@@ -14,64 +15,79 @@
             
         
         }
+        //obtener prenda (realizado)
         public function showAll() {
-            $prendas=$this->model->getPrendasConPartes();
+            $prendas=$this->model->getPrendasConEstaciones();
             $this->view->showPrendas($prendas);
         }
-        public function showObtener(){
-            $this->view->showGetPrendabyId();
-        }
-        public function obtener(){
-            $id=$_POST['obtener'];
-            $obtener=$this->model->getPrendasById($id);
-            if(!empty($obtener)) {
-                $this->view->showGetPrendabyId($obtener);
-                header("location: ". BASE_URL ."header");
+       
+        public function obtener($id) {
+            $prenda=$this->model->getPrendaById($id);
+            if(!empty($prenda)) {
+                $this->view->showGetPrendabyId($prenda);
+               
             }
-        }
-        public function ShowInsertar(){
-            $this->view->showInsertPrenda();
-        }
-        public function Insertar(){
-            $prenda=$_POST['nombre'];
-            $descripcion=$_POST['descripcion'];
-            $precio=$_POST['precio'];
-            $img = $_POST["imagen"];
-            $insert=$this->model->insertPrenda($img, $prenda, $descripcion, $precio);
-            if(!empty($insert)) {
-                $this->view->showInsertPrenda($insert);
-                header("location: ". BASE_URL ."header");
-            }
-        }
-        public function showModificar(){
-            $this->view->showModificarPrenda();
         }
         
-        public function Modificar(){
-            $img=$_POST["imagen"];
-            $prenda=$_POST['nombre'];
-            $descripcion=$_POST['descripcion'];
-            $precio=$_POST['precio'];
-            $modificar=$this->model->updatePrenda($img, $prenda, $descripcion, $precio);
-            if(!empty($modificar)) {
-                $this->view->showModificarPrenda($modificar);
-                header("location: ". BASE_URL ."header");
+        //insertar prenda
+        public function showInsert($prenda){
+            $this->view->showinsertPrenda($prenda);
+        }
+           
+        
+        public function Insertar($id){
+            if(isset ($_POST["imagen"]) && isset($_POST['nombre'])&& isset($_POST['descripcion']) 
+            && isset($_POST['precio']) && 
+            isset($_POST['estacion']) && isset($_POST['imagen'])) 
+                $img=$_POST['imagen'];
+                $prenda=$_POST['nombre'];
+                $descripcion=$_POST['descripcion'];
+                $precio=$_POST['precio'];
+                $estacion=$_POST['estacion'];
+                $insert=$this->model->insertPrenda($img, $prenda, $descripcion, $precio, $estacion, $id); //para modifica e insertar se usa esta misma instancia 
+            if($insert) {
+                $this->view->showinsertPrenda($prenda);
+                //header("location: ". BASE_URL ."header");
             }
         }
-        public function showDelete(){
-            $this->view->showEliminarPrenda();
+        //actualizar prenda (realizado)
+        public function showModificar($id){
+            $prenda=$this->model-> getPrendaById($id);
+            $this->view->showModificarPrenda($prenda);
         }
-        public function delete(){
-            $id=$_POST['eliminar'];
-            $eliminar=$this->model->deletePrenda($id);
-            if(!empty($eliminar)) {
-                $this->view->showEliminarPrenda($eliminar);
-                header("location: ". BASE_URL ."header");
+        
+        public function Modificar($id){
+            
+            if(isset ($_POST["imagen"]) && isset($_POST['nombre'])&& isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['estacion']) && isset($_POST['imagen'])) {
+                $img=$_POST['imagen'];
+                $prenda=$_POST['nombre'];
+                $descripcion=$_POST['descripcion'];
+                $precio=$_POST['precio'];
+                $estacion=$_POST['estacion'];
+                $insert=$this->model->insertPrenda($img, $prenda, $descripcion, $precio, $estacion, $id );
+                if($insert) { // me va a devolver true o folse por rowCount() del modelo en la funcion
+                    $this->obtener($id);
+                    
+                }
+            }
+            
+            
+        }
+       
+        /*public function showDelete() {
+            $prendas=$this->model->getPrendasConEstaciones();
+            $this->view->showPrendas($prendas);
+        }*/
+
+         //eliminar prenda
+        public function showDelete($id){
+            $prenda=$this->model->deletePrenda($id);
+            if(!empty($prenda)) {
+                $this->view->showEliminarPrenda();
             }
         }
+        
     }
-         
-        
-    
+          
         
 ?>

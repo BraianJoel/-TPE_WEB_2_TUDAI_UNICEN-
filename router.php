@@ -1,8 +1,8 @@
 <?php
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
-    require_once('controllers/prendasController.php');
-    require_once('controllers/loginController.php');
+    include_once('controllers/prendasController.php');
+    include_once('controllers/loginController.php');
 
     
     if (!empty($_GET['action'])) {
@@ -29,40 +29,46 @@
             break;
         case 'obtener':
              $controller=new prendasController();
-             $controller-> showObtener();
+             if(isset($params[1])) {
+                $controller->obtener($params[1]);
+             }
              break;
-        case 'getPrenda':
-            $controller=new prendasController();
-            $controller->obtener();
-            break;
         case 'insertar':
             $controller=new prendasController();
-            $controller->showInsertar();
+            if(isset($params[2])) {
+                $controller->Insertar($params[2]);
+                break;
+            }
+            if(isset($params[1])){
+                $controller->showInsert($params[1]);
+            }
             break;
-        case 'addPrenda':
+        case 'modificar';
             $controller=new prendasController();
-            $controller-> Insertar();
+            if(isset($params[2])){
+                $controller=new prendasController();
+                $controller->Modificar($params[2]);
+                break;
+            }
+            if(isset($params[1])){
+                $controller->showModificar($params[1]);
+            }
             break;
-        case 'modificar': 
-            $controller=new prendasController();
-            $controller->showModificar();
-            break;
-        case 'updatePrenda': 
-            $controller=new prendasController();
-            $controller->Modificar();
-            break;
-
         case 'eliminar':
             $controller=new prendasController();
-            $controller->showDelete();
+            if(isset($params[1])) {
+                $controller->showDelete($params[1]);
+                $controller->showAll();
+            }
+           
             break;
-        case 'deletePrenda':
+        /*case 'deletePrenda':
             $controller=new prendasController();
             $controller->delete();
             break;
         //default 
             //$controller->showAll();
-          // break;
+          // break;*/
     }
 
 

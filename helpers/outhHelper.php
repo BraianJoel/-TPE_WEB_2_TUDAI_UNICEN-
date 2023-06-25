@@ -9,9 +9,9 @@ class outhHelper {
 
     public function login($user) {
         session_start();
-        $__SESSION['ID_USER']= $user->id;
-        $__SESSION['USURNAME']= $user->usurname;
-
+        $_SESSION['ID_USER']= $user->id;
+        $_SESSION['USURNAME']= $user->usurname;
+      ;
     }
     public function logaout() {
         session_start();
@@ -21,8 +21,8 @@ class outhHelper {
     }
     public function checkLoggedIn(){
         session_start();
-        if(!isset($__SESSION['ID_USER'])){
-            header('location: login');
+        if(!isset($_SESSION['ID_USER'])){
+            header('location: '. BASE_URL);
             die();
         }
     }
