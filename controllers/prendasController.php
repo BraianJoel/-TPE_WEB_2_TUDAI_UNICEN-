@@ -30,23 +30,23 @@
         }
         
         //insertar prenda
-        public function showInsert($prenda){
-            $this->view->showinsertPrenda($prenda);
+        public function showInsert(){
+            $this->view->showinsertPrenda();
         }
            
         
-        public function Insertar($id){
-            if(isset ($_POST["imagen"]) && isset($_POST['nombre'])&& isset($_POST['descripcion']) 
-            && isset($_POST['precio']) && 
-            isset($_POST['estacion']) && isset($_POST['imagen'])) 
+        public function Insertar(){
+            if(!empty ($_POST["imagen"]) && !empty($_POST['nombre'])&& !empty($_POST['descripcion']) 
+            && !empty($_POST['precio']) && 
+            !empty($_POST['estacion']) && !empty($_POST['imagen'])) 
                 $img=$_POST['imagen'];
                 $prenda=$_POST['nombre'];
                 $descripcion=$_POST['descripcion'];
                 $precio=$_POST['precio'];
                 $estacion=$_POST['estacion'];
-                $insert=$this->model->insertPrenda($img, $prenda, $descripcion, $precio, $estacion, $id); //para modifica e insertar se usa esta misma instancia 
+                $insert=$this->model->insertPrenda($img, $prenda, $descripcion, $precio, $estacion); //para modifica e insertar se usa esta misma instancia 
             if($insert) {
-                $this->view->showinsertPrenda($prenda);
+                $this->view->showinsertPrenda();
                 //header("location: ". BASE_URL ."header");
             }
         }

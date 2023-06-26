@@ -35,12 +35,9 @@
              break;
         case 'insertar':
             $controller=new prendasController();
-            if(isset($params[2])) {
-                $controller->Insertar($params[2]);
+            if(isset($params[1])) {
+                $controller->Insertar();
                 break;
-            }
-            if(isset($params[1])){
-                $controller->showInsert($params[1]);
             }
             break;
         case 'modificar';

@@ -23,10 +23,10 @@ class prendasModel{
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
     //insertar datos
-    public function insertPrenda($img, $prenda, $descripcion, $precio, $estacion, $id ){
+    public function insertPrenda($img, $prenda, $descripcion, $precio, $estacion ){
         $sentencia=$this->db->prepare("INSERT INTO `prendas` (img, prenda, descripcion, precio, estacion, id)
          VALUES(?,?,?,?)");
-        $sentencia->execute(array($img, $prenda, $descripcion, $precio, $estacion, $id));
+        $sentencia->execute([$img, $prenda, $descripcion, $precio, $estacion]);
         
     }
         //modificar datos
