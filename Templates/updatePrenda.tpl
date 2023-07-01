@@ -1,5 +1,5 @@
 {include file='main.tpl'}
-<form action='updatePrenda/{$prenda->id}'  method='post'>
+<form action='modificar/{$prenda->id}'  method='post'>
     <label for='nombre'>Nombre: </label>
     <input type='text' name='nombre' value='{$prenda->nombre}'/>
     <label for='descripcion'>Descripción: </label>

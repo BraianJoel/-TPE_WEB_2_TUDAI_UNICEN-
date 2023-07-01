@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-06-25 22:08:37
+/* Smarty version 4.3.1, created on 2023-06-29 00:46:03
   from 'C:\xampp\htdocs\TPE_WEB_2_TUDAI_UNICEN\templates\main.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_64989ec5d431f5_61759106',
+  'unifunc' => 'content_649cb82b28e078_53287134',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '127db7e990204dc5aed7fa84e7874bf084927cd2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TPE_WEB_2_TUDAI_UNICEN\\templates\\main.tpl',
-      1 => 1687723714,
+      1 => 1687992359,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64989ec5d431f5_61759106 (Smarty_Internal_Template $_smarty_tpl) {
+function content_649cb82b28e078_53287134 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
     <html lang="en">
@@ -36,8 +36,6 @@ function content_64989ec5d431f5_61759106 (Smarty_Internal_Template $_smarty_tpl)
 <body>
     <nav class='menu'>
         <ul>
-            <li><a href='<?php echo BASE_URL;?>
-login'>Login</a></li>
             <li><a href='<?php echo BASE_URL;?>
 prendas'>prendas</a></li>
         </ul>

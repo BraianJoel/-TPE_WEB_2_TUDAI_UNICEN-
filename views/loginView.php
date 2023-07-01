@@ -13,10 +13,10 @@
 
             $this->smarty->display('Templates/login.tpl');  
         }
-        function showloginCorrect(/*$error= null*/){
+        function showloginCorrect(){
             $this->smarty->assign('titulo', "Bienvenido"); 
-            //$this->smarty->assign('error', $error);
+            //$this->smarty->assign('error', $prendas);
 
-            $this->smarty->display('Templates/main.tpl'); 
+            $this->smarty->display('Templates/tablaPrendas.tpl'); 
         }
     }

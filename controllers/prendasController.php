@@ -1,7 +1,7 @@
 <?php
     require_once('models/prendasModel.php');
     require_once('views/prendasView.php');
-    require_once('helpers/outhHelper.php');
+    require_once('helpers/AuthHelper.php');
     
 
 
@@ -30,35 +30,36 @@
         }
         
         //insertar prenda
-        public function showInsert(){
-            $this->view->showinsertPrenda();
+        public function showinsert(){
+            AuthHelper::checkLoggedIn();
+            $this->view->showInsertPrenda();
         }
-           
-        
         public function Insertar(){
-            if(!empty ($_POST["imagen"]) && !empty($_POST['nombre'])&& !empty($_POST['descripcion']) 
-            && !empty($_POST['precio']) && 
-            !empty($_POST['estacion']) && !empty($_POST['imagen'])) 
                 $img=$_POST['imagen'];
                 $prenda=$_POST['nombre'];
                 $descripcion=$_POST['descripcion'];
                 $precio=$_POST['precio'];
                 $estacion=$_POST['estacion'];
+                if(!empty ($_POST["imagen"]) && !empty($_POST['nombre'])&& !empty($_POST['descripcion']) 
+                && !empty($_POST['precio']) && 
+                !empty($_POST['estacion']) && !empty($_POST['imagen'])) 
                 $insert=$this->model->insertPrenda($img, $prenda, $descripcion, $precio, $estacion); //para modifica e insertar se usa esta misma instancia 
-            if($insert) {
-                $this->view->showinsertPrenda();
+            if(isset($insert)) {
+                $this->obtener($insert);
                 //header("location: ". BASE_URL ."header");
             }
         }
         //actualizar prenda (realizado)
         public function showModificar($id){
+            AuthHelper::checkLoggedIn();
             $prenda=$this->model-> getPrendaById($id);
             $this->view->showModificarPrenda($prenda);
         }
         
         public function Modificar($id){
             
-            if(isset ($_POST["imagen"]) && isset($_POST['nombre'])&& isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['estacion']) && isset($_POST['imagen'])) {
+            if(isset ($_POST["imagen"]) && isset($_POST['nombre'])&& isset($_POST['descripcion']) && 
+            isset($_POST['precio']) && isset($_POST['estacion']) && isset($_POST['imagen'])) {
                 $img=$_POST['imagen'];
                 $prenda=$_POST['nombre'];
                 $descripcion=$_POST['descripcion'];
@@ -73,14 +74,10 @@
             
             
         }
-       
-        /*public function showDelete() {
-            $prendas=$this->model->getPrendasConEstaciones();
-            $this->view->showPrendas($prendas);
-        }*/
 
          //eliminar prenda
         public function showDelete($id){
+            AuthHelper::checkLoggedIn();
             $prenda=$this->model->deletePrenda($id);
             if(!empty($prenda)) {
                 $this->view->showEliminarPrenda();

@@ -21,7 +21,7 @@
             break;
         case 'verificar':
             $controller= new loginControl();
-            $controller->verificar();
+            $controller->verify();
             break;
         case 'prendas':
             $controller=new prendasController();
@@ -34,16 +34,16 @@
              }
              break;
         case 'insertar':
-            $controller=new prendasController();
-            if(isset($params[1])) {
+                $controller=new prendasController();
                 $controller->Insertar();
                 break;
-            }
+        case 'mostrar';
+                $controller=new prendasController();
+                $controller->showinsert();
             break;
         case 'modificar';
             $controller=new prendasController();
             if(isset($params[2])){
-                $controller=new prendasController();
                 $controller->Modificar($params[2]);
                 break;
             }

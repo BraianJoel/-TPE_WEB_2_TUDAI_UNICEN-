@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-06-26 00:54:20
+/* Smarty version 4.3.1, created on 2023-06-28 02:14:58
   from 'C:\xampp\htdocs\TPE_WEB_2_TUDAI_UNICEN\Templates\tablaPrendas.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6498c59c3d6091_11525624',
+  'unifunc' => 'content_649b7b82b9d942_28509552',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50cd751da748e4a018739e0fe1c8b17988c7319f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TPE_WEB_2_TUDAI_UNICEN\\Templates\\tablaPrendas.tpl',
-      1 => 1687733584,
+      1 => 1687911294,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:main.tpl' => 1,
   ),
 ),false)) {
-function content_6498c59c3d6091_11525624 (Smarty_Internal_Template $_smarty_tpl) {
+function content_649b7b82b9d942_28509552 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:main.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <table border="1px">
@@ -37,8 +37,8 @@ $_smarty_tpl->tpl_vars['prenda']->do_else = false;
 </h1></td>
         </tr>
         <tr>
-            <td><p><?php echo $_smarty_tpl->tpl_vars['prenda']->value->img;?>
-</p></td>
+            <td><img src='<?php echo $_smarty_tpl->tpl_vars['prenda']->value->img;?>
+'></td>
             <td><p><?php echo $_smarty_tpl->tpl_vars['prenda']->value->descripcion;?>
 </p></td>
             <td><p>Precio: $<?php echo $_smarty_tpl->tpl_vars['prenda']->value->precio;?>
@@ -52,9 +52,6 @@ modificar/<?php echo $_smarty_tpl->tpl_vars['prenda']->value->id;?>
 obtener/<?php echo $_smarty_tpl->tpl_vars['prenda']->value->id;?>
 '>Obtener prenda</a></td>
             <td><a href='<?php echo BASE_URL;?>
-insertar/<?php echo $_smarty_tpl->tpl_vars['prenda']->value->id;?>
-'>Añadir prenda</a></td>
-            <td><a href='<?php echo BASE_URL;?>
 eliminar/<?php echo $_smarty_tpl->tpl_vars['prenda']->value->id;?>
 '>Eliminar prenda</a></td>
         <tr>
@@ -62,6 +59,8 @@ eliminar/<?php echo $_smarty_tpl->tpl_vars['prenda']->value->id;?>
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     </tbody>
+    <td><a href='<?php echo BASE_URL;?>
+mostrar'>Añadir prenda</a></td>
 </table>
 <?php }
 }

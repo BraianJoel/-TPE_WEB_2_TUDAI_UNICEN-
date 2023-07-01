@@ -12,7 +12,6 @@
 <body>
     <nav class='menu'>
         <ul>
-            <li><a href='{BASE_URL}login'>Login</a></li>
             <li><a href='{BASE_URL}prendas'>prendas</a></li>
         </ul>
     </nav>

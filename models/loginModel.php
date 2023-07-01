@@ -8,10 +8,8 @@
             , 'root', '');
         }
         public function getUsersById($username) {
-            $sentencia=$this->db->prepare ("SELECT * FROM 'users' WHERE (usurname)=?");
-            $sentencia->execute(Array($username));
-
-            $username=$sentencia->fetch(PDO::FETCH_OBJ);
-
+            $query = $this->db->prepare('SELECT * FROM users WHERE username = :username');
+            $query->execute(array(':username' => $username));
+            return $query->fetch(PDO::FETCH_ASSOC);
         }
 }
