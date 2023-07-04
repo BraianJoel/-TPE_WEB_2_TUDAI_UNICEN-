@@ -1,5 +1,5 @@
 <?php
-include_once ("./api/APIView.php");
+include_once ("./api/view/APIView.php");
 include_once("./models/prendasModel.php");
 
 class ApiControllerPrendas {
@@ -43,6 +43,48 @@ class ApiControllerPrendas {
 
         $prenda=$this->model->insertPrenda($img, $prenda, $descripcion, $precio, $estacion );
 
+    }
+    public function orderByColumna()
+    {
+        if (isset($_GET['columna']) && isset($_GET['orden'])) {
+            $columna = '';
+            $orden = '';
+            switch ($_GET['columna']) {
+                case 'img':
+                    $columna = 'img';
+                    break;
+                case 'nombre':
+                    $columna = 'nombre';
+                    break;
+                case 'descripcion':
+                    $columna = 'dscripcion';
+                    break;
+                case 'precio':
+                    $columna = 'precio';
+                    break;
+                case 'estaciones_id':
+                    $columna = 'estaciones_id';
+                    break;
+                default:
+                    return $this->view->response("Columna inexistente", 404); // esta bien asi?
+                    break;
+            }
+            switch ($_GET['orden']) {
+                case 'asc':
+                    $orden = "asc";
+                    break;
+                case 'desc':
+                    $orden = "desc";
+                    break;
+                default:
+                    return $this->view->response("Orden inexistente", 404); //esta bien asi?
+                    break;
+            }
+            $orderByColumna = $this->model->orderByColumna($columna, $orden);
+            return $this->view->response($orderByColumna, 200);
+        } else {
+            return $this->view->response("Parametros no seteados", 400);
+        }
     }
     public function modificarPrenda($params=[]) {
         $prenda_id= $params[':ID'];

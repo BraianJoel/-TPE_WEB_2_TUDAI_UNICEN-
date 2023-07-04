@@ -1,11 +1,10 @@
 <?php
 require_once('models/loginModel.php');
-require_once('views/loginView.php');
-require_once ('APIs\jsonView.php');
+require_once('api/view/APIView.php');
 require_once ('herlpers/AuthHelper.php');
 
-class UserController
-{
+class UserController {
+
 
     private $userModel;
     private $view;

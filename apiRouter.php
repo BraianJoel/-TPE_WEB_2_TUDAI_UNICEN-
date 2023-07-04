@@ -1,6 +1,6 @@
 <?php
 require_once ('libs/Router.php');
-require_once ('api/apiControllerPrendas.php');
+require_once ('api/controllers/apiControllerPrendas.php');
 
 //constante para ruteo
 define('BASE_URL', 'http: //'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');

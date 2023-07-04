@@ -22,6 +22,14 @@ class PrendasModel{
 
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
+    public function orderByColumna($columna, $orden){
+        $sentencia=$this->db->prepare("SELECT prendas.*, estaciones.nombre AS estaciones FROM `prendas` INNER JOIN `estaciones` on prendas.estaciones_id=estaciones.id ORDER BY $columna $orden ");
+        $sentencia->execute();
+
+        $orderByColum= $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        return $orderByColum;
+    }
     //insertar datos
     public function insertPrenda($img, $prenda, $descripcion, $precio, $estacion ){
         $sentencia=$this->db->prepare("INSERT INTO `prendas` (img, nombre, descripcion, precio, estaciones_id)
