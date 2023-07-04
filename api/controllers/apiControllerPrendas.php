@@ -50,6 +50,9 @@ class ApiControllerPrendas {
             $columna = '';
             $orden = '';
             switch ($_GET['columna']) {
+                case 'id_prendas':
+                    $columna = 'id_prendas';
+                    break;
                 case 'img':
                     $columna = 'img';
                     break;
@@ -66,19 +69,18 @@ class ApiControllerPrendas {
                     $columna = 'estaciones_id';
                     break;
                 default:
-                    return $this->view->response("Columna inexistente", 404); // esta bien asi?
+                    return $this->view->response("Columna inexistente", 404); 
                     break;
             }
             switch ($_GET['orden']) {
-                case 'asc':
-                    $orden = "asc";
+                case 'ASC':
+                    $orden = "ASC";
                     break;
-                case 'desc':
-                    $orden = "desc";
+                case 'DESC':
+                    $orden = "DESC";
                     break;
                 default:
-                    return $this->view->response("Orden inexistente", 404); //esta bien asi?
-                    break;
+                    return $this->view->response("Orden inexistente", 404); 
             }
             $orderByColumna = $this->model->orderByColumna($columna, $orden);
             return $this->view->response($orderByColumna, 200);
@@ -86,24 +88,7 @@ class ApiControllerPrendas {
             return $this->view->response("Parametros no seteados", 400);
         }
     }
-    public function modificarPrenda($params=[]) {
-        $prenda_id= $params[':ID'];
-        $prenda=$this->model->getPrendaById($prenda_id);
-        if($prenda) {
-            $body=$this->getData();
-            $prenda= $body->nombre;
-            $descripcion= $body->descripcion;
-            $precio= $body->precio;
-            $estacion= $body->titulo;
-            $img=$body->imagen;
-            $prenda=$this->model->insertPrenda($prenda_id, $img, $prenda, $descripcion, $precio, $estacion );
-            $this->view->response("prenda id= $prenda_id", 200);
-        }
-        else{
-            $this->view->response("prenda id= $prenda_id", 404);
-        }
-
-    }
+   
     public function deletePrenda($params=[]) {
         $prenda_id=$params[':ID'];
         $prenda=$this->model->getPrendaById($prenda_id);

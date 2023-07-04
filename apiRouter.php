@@ -12,6 +12,7 @@ $router->addRoute('/prendas', 'POST','ApiControllerPrendas','addPrenda');
 $router->addRoute('/prendas/:ID', 'GET','ApiControllerPrendas','getPrenda');
 $router->addRoute('/prendas/:ID', 'DELETE','ApiControllerPrendas','deletePrenda');
 $router->addRoute('/prendas/:ID', 'PUT','ApiControllerPrendas','modificarPrenda');
+$router->addRoute('/prendasOrdenadas', 'GET','ApiControllerPrendas','orderByColumna');
 
 $router->route($_GET['resource'],$_SERVER['REQUEST_METHOD']);
 

@@ -8,7 +8,7 @@ class PrendasModel{
          , 'root', '');
     }
     public function getPrendasConEstaciones() {
-        $sentencia=$this->db->prepare("SELECT prendas.*, estaciones.nombre AS estaciones FROM `prendas` INNER JOIN `estaciones` on prendas.estaciones_id=estaciones.id");
+        $sentencia=$this->db->prepare("SELECT prendas.*, estaciones.nombre_estaciones AS id_estaciones FROM `prendas` INNER JOIN `estaciones`  on prendas.estaciones_id=estaciones.id_estaciones");
         $sentencia->execute();
 
         $prendas= $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -17,13 +17,13 @@ class PrendasModel{
     }
     //obtener dato por ID
     public function getPrendaById($id){
-        $sentencia=$this->db->prepare("SELECT * FROM `prendas` INNER JOIN `estaciones` on prendas.estaciones_id=estaciones.id WHERE prendas.id=?");
+        $sentencia=$this->db->prepare("SELECT prendas.*, estaciones.nombre_estaciones AS id_estaciones FROM `prendas` INNER JOIN `estaciones` on prendas.estaciones_id=estaciones.id_estaciones WHERE prendas.id_prendas=?");
         $sentencia->execute([$id]);
 
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
     public function orderByColumna($columna, $orden){
-        $sentencia=$this->db->prepare("SELECT prendas.*, estaciones.nombre AS estaciones FROM `prendas` INNER JOIN `estaciones` on prendas.estaciones_id=estaciones.id ORDER BY $columna $orden ");
+        $sentencia=$this->db->prepare("SELECT prendas.*, estaciones.nombre_estaciones AS id_estaciones FROM `prendas` INNER JOIN `estaciones` on prendas.estaciones_id=estaciones.id_estaciones ORDER BY $columna $orden");
         $sentencia->execute();
 
         $orderByColum= $sentencia->fetchAll(PDO::FETCH_OBJ);
