@@ -20,7 +20,7 @@ class ApiControllerPrendas {
         if($prendas) {
             $this->view->response($prendas,200);
         }else {
-            $this->view->response("No se encontraron prendas",200);
+            $this->view->response("El servidor no puede procesar la petición, error del cliente",400);
         }
        
     }  
@@ -29,7 +29,7 @@ class ApiControllerPrendas {
         if($prendas) {
             $this->view->response($prendas,200);
         }else {
-            $this->view->response("No se encontraron prendas",200);
+            $this->view->response("El servidor no puede procesar la petición, error del cliente",400);
         }
     }  
     public function addPrenda($params= null) { 

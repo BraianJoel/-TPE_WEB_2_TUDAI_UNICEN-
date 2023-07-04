@@ -17,7 +17,7 @@ class PrendasModel{
     }
     //obtener dato por ID
     public function getPrendaById($id){
-        $sentencia=$this->db->prepare("SELECT prendas.*, estaciones.nombre AS estaciones FROM prendas INNER JOIN `estaciones` on prendas.estaciones_id=estaciones.id WHERE prendas.id=?");
+        $sentencia=$this->db->prepare("SELECT * FROM `prendas` INNER JOIN `estaciones` on prendas.estaciones_id=estaciones.id WHERE prendas.id=?");
         $sentencia->execute([$id]);
 
         return $sentencia->fetch(PDO::FETCH_OBJ);

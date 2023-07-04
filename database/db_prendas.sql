@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-07-2023 a las 20:50:27
+-- Tiempo de generación: 04-07-2023 a las 21:06:12
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_prendas`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estaciones`
+--
+
+CREATE TABLE `estaciones` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estaciones`
+--
+
+INSERT INTO `estaciones` (`id`, `nombre`) VALUES
+(1, 'Verano'),
+(2, 'Otoño'),
+(3, 'Invierno'),
+(4, 'Primavera');
 
 -- --------------------------------------------------------
 
@@ -46,9 +67,35 @@ INSERT INTO `prendas` (`id`, `img`, `nombre`, `descripcion`, `precio`, `estacion
 (10, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Museo_del_Bicentenario_-_Zapatos_de_N%C3%A9stor_Kirchner.jpg/1200px-Museo_del_Bicentenario_-_Zapatos_de_N%C3%A9stor_Kirchner.jpg', 'zapatos', 'zapatos', 4000, 2),
 (13, 'https://media.istockphoto.com/id/1324844529/es/foto/hermosa-mujer-con-hermoso-vestido-maxi-posando-contra-la-pared-con-una-uva-silvestre.jpg?s=612x612&w=0&k=20&c=NPZ1gii3n5OsfCFoiAq6lhLp4M-xxrotwgcijOI8JSY=', ' 2 martin  ', 'Rayaddds M Verde Blanco Vintage Años 60 Años 70 Halter Tie Mod MCM-\r\n', 42500, 4);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `ID` int(11) NOT NULL,
+  `username` varchar(200) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `token` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`ID`, `username`, `password`, `token`) VALUES
+(1, 'Prendas@indumentaria', '$2y$10$d3DEBGuoFJeVd1vGvm4Odeu60K2Yn7aFO.mVwvbsNUu', '');
+
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `estaciones`
+--
+ALTER TABLE `estaciones`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `prendas`
@@ -58,14 +105,32 @@ ALTER TABLE `prendas`
   ADD KEY `prendas_ID` (`estaciones_id`);
 
 --
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `estaciones`
+--
+ALTER TABLE `estaciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `prendas`
 --
 ALTER TABLE `prendas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
