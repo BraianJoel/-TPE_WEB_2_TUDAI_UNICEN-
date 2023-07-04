@@ -80,12 +80,12 @@ class ApiControllerPrendas {
                     $orden = "DESC";
                     break;
                 default:
-                    return $this->view->response("Orden inexistente", 404); 
+                    return $this->view->response("No se encuentra el recurso solicitado", 404); 
             }
             $orderByColumna = $this->model->orderByColumna($columna, $orden);
             return $this->view->response($orderByColumna, 200);
         } else {
-            return $this->view->response("Parametros no seteados", 400);
+            return $this->view->response("El servidor no puede procesar la petición, error del cliente", 400);
         }
     }
    

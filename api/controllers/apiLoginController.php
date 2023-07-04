@@ -44,8 +44,8 @@ class UserController {
         if ($usuario) {
             $aut= new AuthHelper();
             $token=$aut->getToken($usuario);
-            $aut = new AuthHelper(); //estaba comentado al momento de copiarlo
-            $token = $aut->getToken($usuario);//estaba comentado al momento de copiarlo
+            $aut = new AuthHelper(); 
+            $token = $aut->getToken($usuario);
             $this->view->response($token, 200);
         } else {
             $this->view->response("Usuario o contraseña incorrecta.", 400);
