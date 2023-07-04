@@ -1,5 +1,5 @@
 <?php
-class prendasModel{
+class PrendasModel{
     private $db;
 
     public function __construct() {

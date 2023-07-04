@@ -3,3 +3,5 @@ Archivo para importar la base de datos se encuentra dentro de la carpeta "databa
 
 User: Prendas@indumentaria
 password:prendas#345%iux68
+
+usurname de postaman: braian 
